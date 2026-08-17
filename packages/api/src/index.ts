@@ -35,6 +35,7 @@ export class Lac {
 
 	async set(value: string) {
 		const response = await this.#rest.postBody('/', value)
+		console.log(response)
 		if (!response.ok) {
 			throw new Error('Make sure the server is running')
 		}
