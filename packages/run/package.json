@@ -1,13 +1,14 @@
 {
 	"name": "lac-run",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "",
 	"type": "module",
 	"files": [
-		"./dist/",
-		"!./dist/index.js.map"
+		"./dist/*.js",
+		"!./dist/*.js.map"
 	],
+	"bin": "./dist/index.js",
 	"scripts": {
 		"build": "wireit",
 		"start": "wireit"
