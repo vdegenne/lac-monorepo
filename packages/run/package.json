@@ -1,0 +1,69 @@
+{
+	"name": "lac-run",
+	"version": "0.1.0",
+	"description": "",
+	"type": "module",
+	"main": "",
+	"module": "",
+	"exports": {
+		".": {}
+	},
+	"types": "",
+	"files": [],
+	"scripts": {
+		"build": "wireit",
+		"run": "wireit"
+	},
+	"wireit": {
+		"run": {
+			"service": true,
+			"command": "node ./lib/index.js",
+			"dependencies": [
+				"build"
+			]
+		},
+		"build": {
+			"dependencies": [
+				"build:ts",
+				"build:rollup"
+			]
+		},
+		"build:rollup": {
+			"command": "rollup -c",
+			"dependencies": [
+				"build:ts"
+			],
+			"files": [
+				"./lib/",
+				"./rollup.config.js"
+			],
+			"output": [
+				"./dist"
+			]
+		},
+		"build:ts": {
+			"command": "tsc --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"./tsconfig.json",
+				"./src"
+			],
+			"output": [
+				"./lib"
+			]
+		}
+	},
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^16.0.3",
+		"@types/koa": "^3.0.3",
+		"@types/ws": "^8.18.1",
+		"rollup": "^4.62.4",
+		"typescript": "^7.0.2",
+		"wireit": "^0.14.13",
+		"lac-api": "0.1.0"
+	},
+	"dependencies": {
+		"koa": "^3.2.1",
+		"ws": "^8.21.3"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"strict": true,
+		"outDir": "./lib/",
+		"rootDir": "./src/",
+		"types": ["node"]
+	},
+	"include": ["./src/**/*.ts"]
+}
