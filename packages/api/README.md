@@ -4,17 +4,22 @@ Helpers to interact with the Local Area Clipboard server ([`lac-run`](https://gi
 
 ## Usage
 
-### Http endpoints
-
+### Initialize
 ```js
 import {Lac} from 'lac-api';
 
 const clipboard = new Lac({
   host : '192.168.x.x' // IP of the machine running `lac-run`
 })
+```
 
-await lac.set('hello world')
+### Set content
+```js
+lac.set('hello world') // promisified
+```
 
+### Get content
+```js
 const content = await lac.get()
 console.log(content) // hello world
 ```
