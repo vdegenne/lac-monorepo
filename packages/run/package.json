@@ -1,14 +1,17 @@
 {
 	"name": "lac-run",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
-	"description": "",
+	"description": "A simple one-value clipboard running on your local network.",
 	"type": "module",
 	"files": [
 		"./dist/*.js",
 		"!./dist/*.js.map"
 	],
-	"bin": "./dist/index.js",
+	"bin": {
+		"lac-run": "dist/index.js",
+		"lac": "dist/index.js"
+	},
 	"scripts": {
 		"build": "wireit",
 		"start": "wireit"
