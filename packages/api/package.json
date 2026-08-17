@@ -1,13 +1,9 @@
 {
 	"name": "lac-api",
-	"version": "0.1.0",
+	"version": "0.1.2",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"type": "module",
 	"main": "./lib/index.js",
-	"devDependencies": {
-		"typescript": "^7.0.2",
-		"wireit": "^0.14.13"
-	},
 	"scripts": {
 		"build": "wireit"
 	},
@@ -23,6 +19,15 @@
 				"./lib"
 			]
 		}
-	}
+	},
+	"devDependencies": {
+		"typescript": "^7.0.2",
+		"wireit": "^0.14.13"
+	},
+	"dependencies": {
+		"@vdegenne/mini-rest": "^0.3.6"
+	},
+	"files": [
+		"./lib/"
+	]
 }
-
