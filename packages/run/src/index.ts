@@ -5,7 +5,7 @@ import {networkInterfaces} from 'node:os'
 import {WebSocket, WebSocketServer} from 'ws'
 import {getPortArg} from './cli-args.js'
 
-const DEV = process.env.NODE_ENV === 'development'
+const DEV = true /*process.env.NODE_ENV === 'development'*/
 
 let value = ''
 
@@ -138,12 +138,12 @@ server.listen(port, function () {
 	console.log('══════════════════════════════════════')
 	console.log()
 	console.log(`  Local:   http://localhost:${port}/`)
-	console.log(`  WS:      ws://localhost:${port}/`)
+	console.log(`  WS:      ws://localhost:${port}/ws`)
 	console.log()
 
 	for (const {address, name} of getNetworkAddresses()) {
 		console.log(`  Network: http://${address}:${port}/  ${name}`)
-		console.log(`  WS:      ws://${address}:${port}/  ${name}`)
+		console.log(`  WS:      ws://${address}:${port}/ws  ${name}`)
 	}
 
 	console.log()
