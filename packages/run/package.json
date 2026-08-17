@@ -1,6 +1,6 @@
 {
 	"name": "lac-run",
-	"version": "0.1.5",
+	"version": "0.1.7",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "A simple one-value clipboard running on your local network.",
 	"type": "module",
@@ -66,7 +66,7 @@
 		"rollup": "^4.62.4",
 		"typescript": "^7.0.2",
 		"wireit": "^0.14.13",
-		"lac-api": "0.1.0"
+		"lac-api": "*"
 	},
 	"dependencies": {
 		"koa": "^3.2.1",

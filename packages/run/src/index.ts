@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import {PORT} from 'lac-api'
+import {DEFAULT_PORT} from 'lac-api'
 import {createServer} from 'node:http'
 import {networkInterfaces} from 'node:os'
 import {WebSocket, WebSocketServer} from 'ws'
@@ -129,7 +129,7 @@ server.on('upgrade', (request, socket, head) => {
 	})
 })
 
-const port = getPortArg() ?? PORT
+const port = getPortArg() ?? DEFAULT_PORT
 
 server.listen(port, function () {
 	console.log()
