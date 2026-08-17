@@ -1,15 +1,9 @@
 {
 	"name": "lac-run",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "",
 	"type": "module",
-	"main": "",
-	"module": "",
-	"exports": {
-		".": {}
-	},
-	"types": "",
 	"files": [
 		"./dist/",
 		"!./dist/index.js.map"
