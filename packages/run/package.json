@@ -1,6 +1,6 @@
 {
 	"name": "lac-run",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "A simple one-value clipboard running on your local network.",
 	"type": "module",
@@ -71,5 +71,13 @@
 	"dependencies": {
 		"koa": "^3.2.1",
 		"ws": "^8.21.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vdegenne/lac-monorepo.git"
+	},
+	"homepage": "https://github.com/vdegenne/lac-monorepo#readme",
+	"bugs": {
+		"url": "https://github.com/vdegenne/lac-monorepo/issues"
 	}
 }
