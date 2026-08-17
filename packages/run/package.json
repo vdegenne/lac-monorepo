@@ -12,10 +12,10 @@
 	"files": [],
 	"scripts": {
 		"build": "wireit",
-		"run": "wireit"
+		"start": "wireit"
 	},
 	"wireit": {
-		"run": {
+		"start": {
 			"service": true,
 			"command": "node ./lib/index.js",
 			"dependencies": [
@@ -24,6 +24,7 @@
 		},
 		"build": {
 			"dependencies": [
+				"../api:build",
 				"build:ts",
 				"build:rollup"
 			]
@@ -44,6 +45,9 @@
 		"build:ts": {
 			"command": "tsc --pretty",
 			"clean": "if-file-deleted",
+			"dependencies": [
+				"../api:build"
+			],
 			"files": [
 				"./tsconfig.json",
 				"./src"

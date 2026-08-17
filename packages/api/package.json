@@ -1,5 +1,27 @@
 {
 	"name": "lac-api",
 	"version": "0.1.0",
-	"private": true
+	"type": "module",
+	"main": "./lib/index.js",
+	"devDependencies": {
+		"typescript": "^7.0.2",
+		"wireit": "^0.14.13"
+	},
+	"scripts": {
+		"build": "wireit"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"./tsconfig.json",
+				"./src"
+			],
+			"output": [
+				"./lib"
+			]
+		}
+	}
 }
+
