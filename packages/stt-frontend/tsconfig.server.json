@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"composite": false,
+		"target": "esnext",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"strict": true,
+		"outDir": "./lib/server/",
+		"rootDir": "./src/server/",
+		"types": ["node"]
+	},
+	"include": ["./src/server/**/*.ts", "./types/global.d.ts"]
+}

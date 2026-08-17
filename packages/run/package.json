@@ -1,6 +1,7 @@
 {
 	"name": "lac-run",
 	"version": "0.1.0",
+	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "",
 	"type": "module",
 	"main": "",
@@ -9,7 +10,10 @@
 		".": {}
 	},
 	"types": "",
-	"files": [],
+	"files": [
+		"./dist/",
+		"!./dist/index.js.map"
+	],
 	"scripts": {
 		"build": "wireit",
 		"start": "wireit"

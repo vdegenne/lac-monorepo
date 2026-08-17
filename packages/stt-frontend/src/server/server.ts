@@ -1,10 +1,9 @@
 import Koa from 'koa'
-import {PORT} from 'lac-api'
 import {createServer} from 'node:http'
 import {networkInterfaces} from 'node:os'
 import {WebSocket, WebSocketServer} from 'ws'
-import {getPortArg} from './cli-args.js'
 
+const PORT = 37283
 const DEV = process.env.NODE_ENV === 'development'
 
 let value = ''
@@ -129,32 +128,13 @@ server.on('upgrade', (request, socket, head) => {
 	})
 })
 
-const port = getPortArg() ?? PORT
-
-server.listen(port, function () {
-	console.log()
-	console.log('══════════════════════════════════════')
-	console.log('       Local Area Clipboard')
-	console.log('══════════════════════════════════════')
-	console.log()
-	console.log(`  Local:   http://localhost:${port}/`)
-	console.log(`  WS:      ws://localhost:${port}/`)
-	console.log()
+server.listen(PORT, () => {
+	console.log('\nClipboard server ready\n')
+	console.log(`  Local:   http://localhost:${PORT}/`)
 
 	for (const {address, name} of getNetworkAddresses()) {
-		console.log(`  Network: http://${address}:${port}/  ${name}`)
-		console.log(`  WS:      ws://${address}:${port}/  ${name}`)
+		console.log(`  Network: http://${address}:${PORT}/  ${name}`)
 	}
 
-	console.log()
-	console.log('    GET   /  → read the current value')
-	console.log('    POST  /  → replace the current value')
-	console.log()
-	console.log('  WebSocket:')
-	console.log('    Receive updates as the clipboard changes.')
-	console.log('    Send a message to update the clipboard.')
-	console.log()
-	console.log('  Ready')
-	console.log('══════════════════════════════════════')
 	console.log()
 })

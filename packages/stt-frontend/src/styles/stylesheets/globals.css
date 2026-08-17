@@ -1,0 +1,34 @@
+:root {
+	/* --md-icon-font: 'Material Symbols Rounded'; */
+	--md-list-container-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+	--md-elevation-level: 2 !important;
+
+	/**
+	 * Material defaults: 4px, 6px, 8px
+	 */
+	--md-sys-shape-corner-small: 4px;
+	--md-sys-shape-corner-medium: 6px;
+	--md-sys-shape-corner-large: 8px;
+}
+
+html {
+	/* scrollbar-gutter: stable; */
+}
+html[hide-scrollbar] {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+
+	font-family: roboto;
+
+	background-color: var(--md-sys-color-surface);
+	color: var(--md-sys-color-on-surface);
+
+	position: absolute;
+	inset: 0;
+
+	overflow-y: scroll;
+}

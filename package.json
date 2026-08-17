@@ -2,6 +2,7 @@
 	"name": "lac-monorepo",
 	"version": "1.0.0",
 	"description": "Monorepo for Local Area Clipboard project.",
+	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"main": "index.js",
 	"private": true,
 	"workspaces": [
@@ -15,7 +16,6 @@
 		"url": "git+https://github.com/vdegenne/lac-monorepo.git"
 	},
 	"keywords": [],
-	"author": "",
 	"license": "ISC",
 	"type": "commonjs",
 	"bugs": {

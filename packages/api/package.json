@@ -1,6 +1,7 @@
 {
 	"name": "lac-api",
 	"version": "0.1.0",
+	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"type": "module",
 	"main": "./lib/index.js",
 	"devDependencies": {
