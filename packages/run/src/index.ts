@@ -1,3 +1,4 @@
+import cors from '@koa/cors'
 import Koa from 'koa'
 import {DEFAULT_PORT} from 'lac-api/shared.js'
 import {createServer} from 'node:http'
@@ -62,6 +63,8 @@ function getNetworkAddresses() {
 }
 
 const app = new Koa()
+
+app.use(cors())
 
 app.use(async (ctx) => {
 	if (ctx.method === 'GET' && ctx.path === '/') {

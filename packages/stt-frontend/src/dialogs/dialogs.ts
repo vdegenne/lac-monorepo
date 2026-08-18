@@ -59,6 +59,7 @@ interface DialogOptions {
 		| undefined
 
 	onOpen: ((dialog: Dialog) => void) | undefined
+	onClose: (() => void) | undefined
 
 	actions: ((dialog: Dialog) => TemplateResult) | HTMLTemplateResult | undefined
 }
@@ -75,7 +76,7 @@ export class Dialog extends LitElement {
 		public headline?: string | TemplateResult,
 		public content?: string | TemplateResult | (() => string | TemplateResult),
 		// public actions?: string | TemplateResult | (() => string | TemplateResult),
-		options?: Partial<DialogOptions>
+		options?: Partial<DialogOptions>,
 	) {
 		super()
 		this.#options = {
@@ -87,6 +88,7 @@ export class Dialog extends LitElement {
 			closeButton: 'Close',
 			confirmButton: undefined,
 			onOpen: undefined,
+			onClose: undefined,
 			actions: undefined,
 			...options,
 		}
@@ -138,39 +140,48 @@ export class Dialog extends LitElement {
 				<div slot="headline">${this.headline}</div>
 
 				<div slot="content" class="overflow-hidden">
-					${typeof this.content === 'function'
-						? this.content?.()
-						: this.content}
+					${
+						typeof this.content === 'function' ? this.content?.() : this.content
+					}
 				</div>
 
-				${this.shouldRenderActions
-					? html`
-							<div slot="actions" @click=${this.#onActionsClick}>
-								${this.#options.closeButton
-									? html`<!-- -->
-											<md-text-button @click=${() => this.close()}
-												>${this.#options.closeButton}</md-text-button
-											>
-											<!-- -->`
-									: null}
-								${this.#options.confirmButton
-									? html`<!-- -->
-											<md-filled-tonal-button
-												@click=${() => {
-													this.#options.confirmButton?.onClick?.(this)
-												}}
-												?error=${this.#options.confirmButton.error}
-												>${this.#options.confirmButton
-													.label}</md-filled-tonal-button
-											>
-											<!-- -->`
-									: null}
-								${typeof this.#options.actions === 'function'
-									? this.#options.actions?.(this)
-									: this.#options.actions}
-							</div>
-					  `
-					: null}
+				${
+					this.shouldRenderActions
+						? html`
+								<div slot="actions" @click=${this.#onActionsClick}>
+									${
+										this.#options.closeButton
+											? html`<!-- -->
+													<md-text-button @click=${() => this.close()}
+														>${this.#options.closeButton}</md-text-button
+													>
+													<!-- -->`
+											: null
+									}
+									${
+										this.#options.confirmButton
+											? html`<!-- -->
+													<md-filled-tonal-button
+														@click=${() => {
+															this.#options.confirmButton?.onClick?.(this)
+														}}
+														?error=${this.#options.confirmButton.error}
+														>${
+															this.#options.confirmButton.label
+														}</md-filled-tonal-button
+													>
+													<!-- -->`
+											: null
+									}
+									${
+										typeof this.#options.actions === 'function'
+											? this.#options.actions?.(this)
+											: this.#options.actions
+									}
+								</div>
+							`
+						: null
+				}
 			</md-dialog>
 			<!-- -->`
 	}
@@ -185,6 +196,7 @@ export class Dialog extends LitElement {
 	#onClosed = () => {
 		this.remove()
 		this.open = false
+		this.#options.onClose?.()
 	}
 
 	#onOpened = () => {

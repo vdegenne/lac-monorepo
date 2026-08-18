@@ -60,15 +60,18 @@
 		}
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^29.0.3",
 		"@rollup/plugin-node-resolve": "^16.0.3",
 		"@types/koa": "^3.0.3",
+		"@types/koa__cors": "^5.0.1",
 		"@types/ws": "^8.18.1",
+		"lac-api": "*",
 		"rollup": "^4.62.4",
 		"typescript": "^7.0.2",
-		"wireit": "^0.14.13",
-		"lac-api": "*"
+		"wireit": "^0.14.13"
 	},
 	"dependencies": {
+		"@koa/cors": "^5.0.0",
 		"koa": "^3.2.1",
 		"ws": "^8.21.3"
 	},

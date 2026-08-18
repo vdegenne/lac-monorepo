@@ -1,4 +1,6 @@
 import type {MdDialog} from '@material/web/all.js'
+import '@material/web/iconbutton/icon-button.js'
+import '@material/web/textfield/filled-text-field.js'
 import {withController} from '@snar/lit'
 import {customElement} from 'custom-element-decorator'
 import {html, LitElement} from 'lit'
@@ -11,6 +13,7 @@ import {store} from '../store.js'
 import {renderThemeElements} from '../styles/theme-elements.js'
 import {themeStore} from '../styles/themeStore.js'
 import styles from './settings-dialog.css?inline'
+// import '@material/web/textfield/outlined-text-field.js';
 
 @customElement({name: 'settings-dialog', inject: true})
 @withStyles(styles)
@@ -34,6 +37,11 @@ export class SettingsDialog extends LitElement {
 				</header>
 
 				<form slot="content" method="dialog" id="form" class="">
+					<card-element headline="WebSocket">
+						${store.F.TEXTFIELD('Hostname', 'host', {supportingText: 'IP of the remote machine running `lac-run` (e.g. "192.168.x.x")'})}
+						${store.F.TEXTFIELD('Port', 'port', {type: 'number'})}
+					</card-element>
+
 					<card-element headline="theme">
 						${renderThemeElements()}
 					</card-element>

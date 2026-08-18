@@ -22,6 +22,6 @@ import './global-listeners.js'
 /**
  * Uncomment the follow for reactive object debugging
  */
-import {store} from './store.js'
-import {monitor} from './debug-element.js'
-monitor([store])
+// import {store} from './store.js'
+// import {monitor} from './debug-element.js'
+// monitor([store])

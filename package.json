@@ -9,7 +9,16 @@
 		"packages/*"
 	],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "wireit"
+	},
+	"wireit": {
+		"dev": {
+			"dependencies": [
+				"./packages/run:start",
+				"./packages/api:build",
+				"./packages/stt-frontend:dev"
+			]
+		}
 	},
 	"repository": {
 		"type": "git",
@@ -21,5 +30,8 @@
 	},
 	"keywords": [],
 	"license": "ISC",
-	"type": "commonjs"
+	"type": "commonjs",
+	"devDependencies": {
+		"wireit": "^0.14.13"
+	}
 }

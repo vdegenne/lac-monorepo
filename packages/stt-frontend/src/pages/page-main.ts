@@ -1,10 +1,17 @@
+import '@material/web/iconbutton/icon-button.js'
+import '@material/web/textfield/filled-text-field.js'
+import {MdFilledTextField} from '@material/web/textfield/filled-text-field.js'
 import {withController} from '@snar/lit'
+import {TEXTAREA} from '@vdegenne/forms/FormBuilder.js'
 import {css, html} from 'lit'
 import {withStyles} from 'lit-with-styles'
-import {customElement} from 'lit/decorators.js'
+import {customElement, query} from 'lit/decorators.js'
 import {stateless} from '../stateless.js'
 import {store} from '../store.js'
 import {PageElement} from './PageElement.js'
+import {copyToClipboard} from '../utils.js'
+import toast from 'toastit'
+// import '@material/web/textfield/outlined-text-field.js';
 
 declare global {
 	interface HTMLElementTagNameMap {
@@ -18,11 +25,72 @@ declare global {
 @withStyles(css`
 	:host {
 	}
+
+	[type='textarea'][locked] {
+		opacity: 0.5;
+	}
 `)
 export class PageMain extends PageElement {
+	@query('[type=textarea]') textarea?: MdFilledTextField
+
 	render() {
 		return html`<!---->
-			Main page
+			<div class="p-6 flex flex-col flex-1 gap-5">
+				<div class="flex-1">
+					<md-filled-text-field
+						?locked="${stateless.lockClipboard}"
+						?readonly="${stateless.lockClipboard}"
+						type="textarea"
+						class="w-full h-full"
+						@input="${() => {
+							const value = this.textarea?.value
+							if (value !== undefined) store.clipboard = value
+						}}"
+					>
+						<md-icon-button
+							slot="trailing-icon"
+							@click="${() => {
+								copyToClipboard(this.textarea?.value ?? '')
+								toast('copied')
+							}}"
+							><md-icon>content_copy</md-icon></md-icon-button
+						>
+					</md-filled-text-field>
+				</div>
+				<div class="flex items-center gap-2">
+					${
+						stateless.lockClipboard
+							? html`<!-- -->
+									<md-filled-tonal-button
+										@click="${() => (stateless.lockClipboard = false)}"
+									>
+										<md-icon slot="icon">lock</md-icon>
+										Edit content
+									</md-filled-tonal-button>
+									<!-- -->`
+							: html`<!-- -->
+									<md-filled-tonal-button
+										error
+										@click="${() => (stateless.lockClipboard = true)}"
+									>
+										<md-icon slot="icon">lock_open</md-icon>
+										Lock content
+									</md-filled-tonal-button>
+
+									<md-filled-tonal-button
+										@click="${() => {
+											this.textarea!.value = ''
+											this.textarea!.dispatchEvent(new Event('input'))
+										}}"
+									>
+										<md-icon slot="icon">clear</md-icon>
+										Clear
+									</md-filled-tonal-button>
+									<!-- -->`
+					}
+				</div>
+				<!-- ${TEXTAREA('Clipboard', store, 'clipboard', {rows: 6, autofocus: true, resetButton: true})} -->
+			</div>
 			<!----> `
 	}
 }
