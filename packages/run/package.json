@@ -1,6 +1,6 @@
 {
 	"name": "lac-run",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"description": "A simple one-value clipboard running on your local network.",
 	"type": "module",

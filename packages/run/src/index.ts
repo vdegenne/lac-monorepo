@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import {DEFAULT_PORT} from 'lac-api'
+import {DEFAULT_PORT} from 'lac-api/shared.js'
 import {createServer} from 'node:http'
 import {networkInterfaces} from 'node:os'
 import {WebSocket, WebSocketServer} from 'ws'
