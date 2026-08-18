@@ -23,6 +23,9 @@ jobs:
       - uses: google/wireit@setup-github-actions-caching/v2
 
       - run: npm ci
+      - run: |
+          ls -la node_modules/lac-api
+          ls -la node_modules/lac-api/shared.js
       - run: npm run build --workspace=packages/stt-frontend
         env:
           WIREIT_FAILURES: continue

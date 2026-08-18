@@ -11,7 +11,7 @@
 		"types": ["vite/client", "lit", "lit/decorators.js", "material-shell"]
 	},
 	"include": ["./src/**/*.ts", "./types/global.d.ts"],
-	"exclude": ["./src/server/", "./src/health-check/"],
+	"exclude": ["./src/server/"],
 	// These errors are because the configs are not settings "composite" to true
 	// The references are just used by the IDE to help with resolution here
 	"references": [{"path": "./tsconfig.server.json"}]
