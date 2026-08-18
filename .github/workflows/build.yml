@@ -1,0 +1,36 @@
+name: Build stt-frontend
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'packages/stt-frontend/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          cache: npm
+
+      - uses: google/wireit@setup-github-actions-caching/v2
+
+      - run: npm ci
+      - run: npm run build --workspace=packages/stt-frontend
+        env:
+          WIREIT_FAILURES: continue
+
+      - uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build
+          FOLDER: packages/stt-frontend/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: 'Build: ({sha}) {msg}'
