@@ -60,6 +60,9 @@
 		},
 		"build:vite": {
 			"command": "vite build",
+			"dependencies": [
+				"../api:build"
+			],
 			"files": [
 				"./vite.config.js",
 				"./src/",
