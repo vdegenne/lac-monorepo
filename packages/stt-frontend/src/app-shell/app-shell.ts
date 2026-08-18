@@ -106,7 +106,7 @@ export class AppShell extends MaterialShellChild {
 				'geometrychange',
 				(event: any) => {
 					const buttons = this.renderRoot.querySelector<HTMLElement>(
-						'[slot="actionItems"]'
+						'[slot="actionItems"]',
 					)
 					if (!buttons) return
 					if (event.visible) {
@@ -116,7 +116,7 @@ export class AppShell extends MaterialShellChild {
 						buttons.style.paddingTop = '0'
 						buttons.style.transform = 'initial'
 					}
-				}
+				},
 			)
 		}
 	}

@@ -84,7 +84,7 @@
 		"@vdegenne/forms": "^0.1.73",
 		"@vdegenne/lit-debug": "^0.1.2",
 		"@vdegenne/material-color-helpers": "^1.11.7",
-		"@vdegenne/mini-rest": "^0.3.6",
+		"@vdegenne/mini-rest": "^0.3.7",
 		"@vdegenne/rollup-plugin-minify-html": "^1.0.6",
 		"@vdegenne/router": "^0.1.11",
 		"custom-element-decorator": "^0.6.0",
@@ -103,7 +103,8 @@
 		"vite": "^8.2.1",
 		"vite-plugin-mdicon2svg": "^0.2.3",
 		"vscode-ui-connector": "^0.2.4",
-		"wireit": "^0.14.13"
+		"wireit": "^0.14.13",
+		"lac-api": "*"
 	},
 	"dependencies": {
 		"koa": "^3.2.1",

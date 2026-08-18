@@ -1,5 +1,5 @@
 import {ReactiveController} from '@snar/lit'
-import {cquerySelectorAll} from 'html-vision'
+import {$$} from 'html-vision/queries.js'
 import {html, LitElement} from 'lit'
 import {withStyles} from 'lit-with-styles'
 import {customElement, state} from 'lit/decorators.js'
@@ -46,16 +46,16 @@ class DebugViewer extends LitElement {
 
 	render() {
 		let elements: (HTMLElement | ReactiveController)[] = this.monitored.filter(
-			(el) => typeof el !== 'string'
+			(el) => typeof el !== 'string',
 		)
 		const elementsToQuery = this.monitored.filter(
-			(el) => typeof el === 'string'
+			(el) => typeof el === 'string',
 		)
 		if (elementsToQuery.length) {
 			elements = elements.concat(
-				cquerySelectorAll<HTMLElement>(
-					this.monitored.filter((el) => typeof el === 'string').join(', ')
-				)
+				$$<HTMLElement>(
+					this.monitored.filter((el) => typeof el === 'string').join(', '),
+				),
 			)
 		}
 
@@ -85,9 +85,11 @@ class DebugViewer extends LitElement {
 								class="text-yellow-400 cursor-pointer"
 								@click=${() => console.log(el)}
 							>
-								${el instanceof HTMLElement
-									? el.tagName.toLowerCase()
-									: el.constructor.name || 'store'}
+								${
+									el instanceof HTMLElement
+										? el.tagName.toLowerCase()
+										: el.constructor.name || 'store'
+								}
 							</div>
 							${propNames.map((_name) => {
 								const name = _name as keyof typeof el
@@ -121,9 +123,11 @@ class DebugViewer extends LitElement {
 												}
 											}}
 										>
-											${value !== undefined
-												? JSON.stringify(value)
-												: 'undefined'}
+											${
+												value !== undefined
+													? JSON.stringify(value)
+													: 'undefined'
+											}
 										</div>
 									</div>
 								`
