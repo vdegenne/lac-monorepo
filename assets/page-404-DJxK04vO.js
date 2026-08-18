@@ -1,0 +1,1 @@
+import{b as p,t as g,g as i,w as m,i as v,s as w}from"./index-fJioK6c6.js";import{P as O}from"./PageElement-DVpyAmp-.js";var P=Object.getOwnPropertyDescriptor,f=(t,s,n,a)=>{for(var e=a>1?void 0:a?P(s,n):s,r=t.length-1,o;r>=0;r--)(o=t[r])&&(e=o(e)||e);return e};let l=class extends O{render(){return p`404 NOT FOUND`}};l=f([g("page-404"),i(w),m(v``)],l);export{l as Page404};
