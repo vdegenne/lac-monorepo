@@ -1,13 +1,12 @@
 import {PropertyValues, ReactiveController, state} from '@snar/lit'
+import {debounce} from '@vdegenne/debouncer'
 import {FormBuilder} from '@vdegenne/forms/FormBuilder.js'
 import {DEFAULT_PORT} from 'lac-api/shared.js'
 import {saveToLocalStorage} from 'snar-save-to-local-storage'
-import {Page, availablePages, getMainPage} from './pages/index.js'
-import toast from 'toastit'
-import {getWS, initWS, setClipboardContent} from './ws.js'
 import {showInitDialog} from './dialogs/init-dialog.js'
-import {debounce} from '@vdegenne/debouncer'
+import {Page, availablePages, getMainPage} from './pages/index.js'
 import {stateless} from './stateless.js'
+import {getWS, initWS, setClipboardContent} from './ws.js'
 
 @saveToLocalStorage('stt-frontend:store')
 export class AppStore extends ReactiveController {
