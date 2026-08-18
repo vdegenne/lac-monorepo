@@ -40,5 +40,13 @@
 	},
 	"files": [
 		"./lib/"
-	]
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vdegenne/lac-monorepo.git"
+	},
+	"homepage": "https://github.com/vdegenne/lac-monorepo#readme",
+	"bugs": {
+		"url": "https://github.com/vdegenne/lac-monorepo/issues"
+	}
 }

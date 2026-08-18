@@ -37,10 +37,13 @@ const clipboard = new LacWS({
 })
 
 // listen for changes
-const unsub = clipboard.subscribe((value) => {
+clipboard.subscribe((value) => {
 	console.log(`Content changed: "${value}"`)
 })
 
 // modify the content (sent over the WS connection)
 clipboard.set('hello world')
+
+// when you're done
+clipboard.disconnect()
 ```

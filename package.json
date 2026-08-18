@@ -15,11 +15,11 @@
 		"type": "git",
 		"url": "git+https://github.com/vdegenne/lac-monorepo.git"
 	},
-	"keywords": [],
-	"license": "ISC",
-	"type": "commonjs",
+	"homepage": "https://github.com/vdegenne/lac-monorepo#readme",
 	"bugs": {
 		"url": "https://github.com/vdegenne/lac-monorepo/issues"
 	},
-	"homepage": "https://github.com/vdegenne/lac-monorepo#readme"
+	"keywords": [],
+	"license": "ISC",
+	"type": "commonjs"
 }
