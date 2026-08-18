@@ -60,9 +60,7 @@ export class LacWS extends ReactiveController {
 			return
 		}
 
-		const host = this.host.replace(/^http:/, 'ws:').replace(/^https:/, 'wss:')
-
-		const socket = new WebSocket(`${host}:${this.port}/ws`)
+		const socket = new WebSocket(`ws://${this.host}:${this.port}/ws`)
 
 		this.socket = socket
 
