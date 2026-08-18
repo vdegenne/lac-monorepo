@@ -27,7 +27,7 @@ const content = await lac.get()
 console.log(content) // hello world
 ```
 
-### WS
+### WebSocket
 
 ```js
 import {LacWS} from 'lac-api'
