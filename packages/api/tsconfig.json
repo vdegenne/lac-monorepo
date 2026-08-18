@@ -3,11 +3,13 @@
 		"target": "esnext",
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
-		"strict": true,
+		"strict": false,
 		"outDir": "./lib/",
 		"rootDir": "./src/",
 		"declaration": true,
 		"declarationMap": true,
-		"sourceMap": true
+		"sourceMap": true,
+		"experimentalDecorators": true,
+		"types": []
 	}
 }

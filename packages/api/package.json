@@ -1,9 +1,19 @@
 {
 	"name": "lac-api",
-	"version": "0.1.5",
+	"version": "0.1.7",
 	"author": "Valentin Degenne <vdegenne@gmail.com>",
 	"type": "module",
 	"main": "./lib/index.js",
+	"exports": {
+		".": {
+			"import": "./lib/index.js",
+			"types": "./lib/index.d.ts"
+		},
+		"./shared.js": {
+			"import": "./lib/shared.js",
+			"types": "./lib/shared.d.ts"
+		}
+	},
 	"scripts": {
 		"build": "wireit"
 	},
@@ -25,6 +35,7 @@
 		"wireit": "^0.14.13"
 	},
 	"dependencies": {
+		"@snar/lit": "^1.8.1",
 		"@vdegenne/mini-rest": "^0.3.8"
 	},
 	"files": [

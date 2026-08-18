@@ -1,6 +1,5 @@
 import {Endpoint, Rest} from '@vdegenne/mini-rest'
-
-export const DEFAULT_PORT = 37283
+import {DEFAULT_PORT} from './shared.js'
 
 export class Lac {
 	#rest: Rest<{
@@ -40,3 +39,5 @@ export class Lac {
 		}
 	}
 }
+
+export {LacWS} from './ws.js'
