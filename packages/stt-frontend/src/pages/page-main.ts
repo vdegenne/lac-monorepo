@@ -27,7 +27,7 @@ declare global {
 	}
 
 	[type='textarea'][locked] {
-		opacity: 0.5;
+		/*opacity: 0.5;*/
 	}
 `)
 export class PageMain extends PageElement {
