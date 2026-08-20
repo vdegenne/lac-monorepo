@@ -6,11 +6,13 @@ import {TEXTAREA} from '@vdegenne/forms/FormBuilder.js'
 import {css, html} from 'lit'
 import {withStyles} from 'lit-with-styles'
 import {customElement, query} from 'lit/decorators.js'
+import toast from 'toastit'
+import {clearClipboardContent} from '../functions.js'
+import '../material/outlined-field-patch.ts'
 import {stateless} from '../stateless.js'
 import {store} from '../store.js'
-import {PageElement} from './PageElement.js'
 import {copyToClipboard} from '../utils.js'
-import toast from 'toastit'
+import {PageElement} from './PageElement.js'
 // import '@material/web/textfield/outlined-text-field.js';
 
 declare global {
@@ -37,32 +39,45 @@ export class PageMain extends PageElement {
 		return html`<!---->
 			<div class="p-6 flex flex-col flex-1 gap-5">
 				<div class="flex-1">
-					<md-filled-text-field
+					<md-outlined-text-field
 						?locked="${stateless.lockClipboard}"
 						?readonly="${stateless.lockClipboard}"
 						type="textarea"
 						class="w-full h-full"
-						@input="${() => {
-							const value = this.textarea?.value
-							if (value !== undefined) store.clipboard = value
+						@input="${(event: KeyboardEvent) => {
+							if (!event.isComposing) {
+								const value = this.textarea?.value
+								if (value !== undefined) store.clipboard = value
+							}
 						}}"
 					>
-						<md-icon-button
-							slot="trailing-icon"
-							@click="${() => {
-								copyToClipboard(this.textarea?.value ?? '')
-								toast('copied')
-							}}"
-							><md-icon>content_copy</md-icon></md-icon-button
-						>
-					</md-filled-text-field>
+						<div slot="trailing-icon" class="flex flex-col gap-1">
+							<md-icon-button
+								?hidden="${stateless.lockClipboard}"
+								@click="${() => {
+									clearClipboardContent()
+								}}"
+								><md-icon>clear</md-icon></md-icon-button
+							>
+							<md-icon-button
+								@click="${() => {
+									copyToClipboard(this.textarea?.value ?? '')
+									toast('copied')
+								}}"
+								><md-icon>content_copy</md-icon></md-icon-button
+							>
+						</div>
+					</md-outlined-text-field>
 				</div>
-				<div class="flex items-center gap-2">
+				<div class="flex items-center gap-2 mb-12">
 					${
 						stateless.lockClipboard
 							? html`<!-- -->
 									<md-filled-tonal-button
-										@click="${() => (stateless.lockClipboard = false)}"
+										@click="${() => {
+											stateless.lockClipboard = false
+											this.focusTextarea()
+										}}"
 									>
 										<md-icon slot="icon">lock</md-icon>
 										Edit content
@@ -77,21 +92,24 @@ export class PageMain extends PageElement {
 										Lock content
 									</md-filled-tonal-button>
 
-									<md-filled-tonal-button
+									<!--<md-filled-tonal-button
 										@click="${() => {
-											this.textarea!.value = ''
-											this.textarea!.dispatchEvent(new Event('input'))
+											clearClipboardContent()
 										}}"
 									>
 										<md-icon slot="icon">clear</md-icon>
 										Clear
-									</md-filled-tonal-button>
+									</md-filled-tonal-button>-->
 									<!-- -->`
 					}
 				</div>
 				<!-- ${TEXTAREA('Clipboard', store, 'clipboard', {rows: 6, autofocus: true, resetButton: true})} -->
 			</div>
 			<!----> `
+	}
+
+	focusTextarea() {
+		this.textarea?.focus()
 	}
 }
 
