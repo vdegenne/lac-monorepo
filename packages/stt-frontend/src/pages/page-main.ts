@@ -7,7 +7,7 @@ import {css, html} from 'lit'
 import {withStyles} from 'lit-with-styles'
 import {customElement, query} from 'lit/decorators.js'
 import toast from 'toastit'
-import {clearClipboardContent} from '../functions.js'
+import {clearClipboardContent, handleTextareaInput} from '../functions.js'
 import '../material/outlined-field-patch.ts'
 import {stateless} from '../stateless.js'
 import {store} from '../store.js'
@@ -44,11 +44,14 @@ export class PageMain extends PageElement {
 						?readonly="${stateless.lockClipboard}"
 						type="textarea"
 						class="w-full h-full"
-						@input="${(event: KeyboardEvent) => {
-							if (!event.isComposing) {
-								const value = this.textarea?.value
-								if (value !== undefined) store.clipboard = value
-							}
+						@compositionstart="${() => {
+							handleTextareaInput.cancel()
+						}}"
+						@compositionend="${() => {
+							handleTextareaInput.debounce()
+						}}"
+						@input="${(event: InputEvent) => {
+							if (!event.isComposing) handleTextareaInput.debounce()
 						}}"
 					>
 						<div slot="trailing-icon" class="flex flex-col gap-1">
