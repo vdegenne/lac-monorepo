@@ -222,4 +222,13 @@ export class LacWS extends ReactiveController {
 			this.connectionTimer = undefined
 		}
 	}
+
+	destroy() {
+		this.disconnect()
+
+		this.#valueListeners.clear()
+		this.#connectListeners.clear()
+		this.#disconnectListeners.clear()
+		this.#errorListeners.clear()
+	}
 }
